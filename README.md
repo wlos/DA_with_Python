@@ -17,7 +17,7 @@
 Welcome to the **Data Analysis with Python** curriculum (aligning with **ICTDBS556**). This repository provides vocational learners and data practitioners with end-to-end, code-first foundations in data analytics using the standard open-source Python stack: Pandas, Matplotlib, Seaborn, and scikit-learn.
 
 - 🌐 **Course Website**: <https://wlos.github.io/DA_with_Python/>
-- 🗺️ **Interactive Roadmap**: [Mindmap of the Course](mindmap.html) · [Online Mindmap](https://wlos.github.io/DA_with_Python/mindmap.html)
+- 🗺️ **Interactive Roadmap**: [Mindmap of the Course](https://wlos.github.io/DA_with_Python/mindmap.html)
 
 ## 🛠️ What You'll Build
 
@@ -105,7 +105,7 @@ To work with the notebooks and code on your local computer:
 
 - 🤖 [Artificial Intelligence Skill Set](https://wlos.github.io/AI_SS/) · [GitHub](https://github.com/wlos/AI_SS): PyTorch deep learning, CNNs, computer vision, and Hugging Face Transformers.
 - 🔌 [Build AI Apps with REST API & MCP](https://wlos.github.io/Connect-AI-using-REST-API/) · [GitHub](https://github.com/wlos/Connect-AI-using-REST-API): REST APIs, FastAPI microservices, and Model Context Protocol (MCP).
-- 🐍 [Introduction to AI with Python](https://wlos.github.io/ai_with_python_course/) · [GitHub](https://github.com/wlos/ai_with_python_course): Programming fundamentals, algorithms, robotics with micro:bit & Maqueen, and introductory AI.
+- 🧠 [Introduction to AI with Python](https://wlos.github.io/ai_with_python_course/) · [GitHub](https://github.com/wlos/ai_with_python_course): Programming fundamentals, algorithms, robotics with micro:bit & Maqueen, and introductory AI.
 
 ## 📄 License
 

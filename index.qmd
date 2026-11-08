@@ -211,7 +211,7 @@ Connect AI assistants to enterprise business systems through robust RESTful APIs
 :::
 
 ::: {.info-card}
-#### 🐍 [Introduction to AI with Python](https://wlos.github.io/ai_with_python_course/) · [GitHub Repository](https://github.com/wlos/ai_with_python_course)
+#### 🧠 [Introduction to AI with Python](https://wlos.github.io/ai_with_python_course/) · [GitHub Repository](https://github.com/wlos/ai_with_python_course)
 Foundational programming, logic, algorithms, robotics with micro:bit & Maqueen, and core machine learning fundamentals for emerging coders.
 :::
 :::
