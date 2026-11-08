@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Data Analysis with Python — Interactive Course Mindmap</title>
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+html, body {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  background: #ffffff;
+}
+.markmap {
+  width: 100vw;
+  height: 100vh;
+}
+.markmap > svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+.nav-header {
+  position: absolute;
+  top: 16px;
+  left: 20px;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+.nav-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 16px;
+  background: rgba(255, 255, 255, 0.96);
+  border: 1px solid #d0d7de;
+  border-radius: 24px;
+  color: #1f2937;
+  text-decoration: none;
+  font-size: 13.5px;
+  font-weight: 600;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+  transition: all 0.2s ease;
+}
+.nav-btn:hover {
+  background: #f3f4f6;
+  border-color: #0066cc;
+  color: #0066cc;
+  transform: translateY(-1px);
+}
+.toolbar-group {
+  display: inline-flex;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.96);
+  border: 1px solid #d0d7de;
+  border-radius: 24px;
+  padding: 3px 6px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+}
+.tool-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 6px 11px;
+  background: transparent;
+  border: none;
+  border-radius: 18px;
+  color: #374151;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+.tool-btn:hover {
+  background: #f3f4f6;
+  color: #0066cc;
+}
+.tool-btn:active {
+  background: #e5e7eb;
+}
+.tool-btn svg {
+  width: 15px;
+  height: 15px;
+  fill: currentColor;
+}
+.tool-divider {
+  width: 1px;
+  height: 16px;
+  background: #e5e7eb;
+  margin: 0 3px;
+}
+.nav-title {
+  padding: 6px 14px;
+  background: rgba(243, 244, 246, 0.95);
+  border: 1px solid #e5e7eb;
+  border-radius: 20px;
+  font-size: 12.5px;
+  font-weight: 500;
+  color: #4b5563;
+}
+.markmap a {
+  color: #0066cc;
+  text-decoration: none;
+  transition: color 0.15s ease, text-decoration 0.15s ease;
+}
+.markmap a:hover {
+  color: #003d7a;
+  text-decoration: underline;
+}
+@media (max-width: 960px) {
+  .nav-title {
+    display: none;
+  }
+}
+@media (max-width: 680px) {
+  .tool-btn span {
+    display: none;
+  }
+  .tool-btn {
+    padding: 6px 8px;
+  }
+}
+</style>
+<script>
+window.markmap = window.markmap || {};
+let markmapInstance = null;
+
+let _markmap = undefined;
+Object.defineProperty(window.markmap, 'Markmap', {
+  configurable: true,
+  enumerable: true,
+  get() { return _markmap; },
+  set(originalClass) {
+    _markmap = originalClass;
+    const origCreate = originalClass.create;
+    _markmap.create = function(svg, opts, data) {
+      const mm = origCreate.call(originalClass, svg, opts, data);
+      markmapInstance = mm;
+      window.mm = mm;
+      return mm;
+    };
+  }
+});
+</script>
+<script src="https://cdn.jsdelivr.net/npm/markmap-autoloader"></script>
+</head>
+<body>
+<div class="nav-header">
+  <a href="index.html" class="nav-btn">← Back to Course</a>
+
+  <div class="toolbar-group">
+    <button id="btn-zoom-in" class="tool-btn" title="Zoom in">
+      <svg viewBox="0 0 24 24"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg>
+      <span>Zoom In</span>
+    </button>
+    <button id="btn-zoom-out" class="tool-btn" title="Zoom out">
+      <svg viewBox="0 0 24 24"><path d="M19 13H5v-2h14v2z"/></svg>
+      <span>Zoom Out</span>
+    </button>
+    <div class="tool-divider"></div>
+    <button id="btn-fit" class="tool-btn" title="Fit to screen (Recentre view)">
+      <svg viewBox="0 0 24 24"><path d="M5 5h5V3H3v7h2V5zm14-2h-7v2h5v5h2V3zm-2 16h-5v2h7v-7h-2v5zM5 14H3v7h7v-2H5v-5z"/></svg>
+      <span>Fit to Screen</span>
+    </button>
+    <div class="tool-divider"></div>
+    <button id="btn-expand" class="tool-btn" title="Expand all branches">
+      <svg viewBox="0 0 24 24"><path d="M12 5.83L15.17 9l1.41-1.41L12 3 7.41 7.59 8.83 9 12 5.83zm0 12.34L8.83 15l-1.41 1.41L12 21l4.59-4.59L15.17 15 12 18.17z"/></svg>
+      <span>Expand All</span>
+    </button>
+    <button id="btn-collapse" class="tool-btn" title="Collapse detailed branches">
+      <svg viewBox="0 0 24 24"><path d="M12 8l-6 6 1.41 1.41L12 10.83l4.59 4.58L18 14z"/></svg>
+      <span>Collapse All</span>
+    </button>
+  </div>
+
+  <span class="nav-title">🗺️ Click links to open lecture sections in new tab · Pan & Zoom supported</span>
+</div>
+
+<div class="markmap">
+<script type="text/template">
+# [Data Analysis with Python](index.html)
+
+## [01 Introduction to Data Analysis](01-Introduction-to-Data-Analysis/Session1%20Introduction%20to%20Data%20Analysis%20with%20Python.html)
+- [1. Course & Assessment Overview](01-Introduction-to-Data-Analysis/Session1%20Introduction%20to%20Data%20Analysis%20with%20Python.html#course-overview-and-assessment-overview)
+  - Unit ICTDBS556 requirements & deliverables
+- [2. Python for Data Analytics](01-Introduction-to-Data-Analysis/Session1%20Introduction%20to%20Data%20Analysis%20with%20Python.html#introduction-to-python)
+  - Ecosystem & core libraries overview
+- [3. Notebook Environments](01-Introduction-to-Data-Analysis/Session1%20Introduction%20to%20Data%20Analysis%20with%20Python.html#online-and-local-notebooks)
+  - JupyterLab vs Colab vs VS Code
+- [4. Commands, Variables & Types](01-Introduction-to-Data-Analysis/Session1%20Introduction%20to%20Data%20Analysis%20with%20Python.html#basic-commands-variables-functions-and-outputs)
+  - Cell execution & common data structures
+
+## [02 Data Loading and Pandas Basics](02-Data-Loading-and-Pandas-Basics/Session2%20Data%20Loading%20and%20Pandas%20Basics.html)
+- [1. Why Pandas?](02-Data-Loading-and-Pandas-Basics/Session2%20Data%20Loading%20and%20Pandas%20Basics.html#why-pandas)
+  - Tabular paradigm vs native Python
+- [2. Ingesting CSV and Excel](02-Data-Loading-and-Pandas-Basics/Session2%20Data%20Loading%20and%20Pandas%20Basics.html#loading-and-saving-csvexcel-data)
+  - `read_csv()` and `read_excel()` options
+- [3. Series and DataFrames](02-Data-Loading-and-Pandas-Basics/Session2%20Data%20Loading%20and%20Pandas%20Basics.html#series-dataframes-and-python-data-structures)
+  - 1D Series vs 2D DataFrame anatomy
+- [4. Inspecting & Indexing](02-Data-Loading-and-Pandas-Basics/Session2%20Data%20Loading%20and%20Pandas%20Basics.html#inspecting-a-dataframe)
+  - `.info()`, `.describe()`, `head()`
+  - `.loc` and `.iloc` selection
+- [5. Common Column Operations](02-Data-Loading-and-Pandas-Basics/Session2%20Data%20Loading%20and%20Pandas%20Basics.html#common-operations)
+  - Calculated fields & Boolean filtering
+
+## [03 Structured & Unstructured Data](03-Structured-and-Unstructured-Data/Session3%20Loading%20Structured%20and%20Unstructured%20Data.html)
+- [1. Data Types by Structure](03-Structured-and-Unstructured-Data/Session3%20Loading%20Structured%20and%20Unstructured%20Data.html#data-types-by-structure)
+  - Structured, semi-structured & unstructured
+- [2. Parsing Log Files](03-Structured-and-Unstructured-Data/Session3%20Loading%20Structured%20and%20Unstructured%20Data.html#loading-unstructured-data)
+  - Regex line extraction to columns
+- [3. Semi-Structured JSON](03-Structured-and-Unstructured-Data/Session3%20Loading%20Structured%20and%20Unstructured%20Data.html#loading-semi-structured-json-data-with-readjson)
+  - `pd.read_json()` & nested flattening
+- [4. SQLite Databases & SQL Queries](03-Structured-and-Unstructured-Data/Session3%20Loading%20Structured%20and%20Unstructured%20Data.html#load-database)
+  - `sqlite3` connection & `pd.read_sql()`
+- [5. Data Security Fundamentals](03-Structured-and-Unstructured-Data/Session3%20Loading%20Structured%20and%20Unstructured%20Data.html#introduction-to-data-security)
+  - Sanitising & handling confidential extracts
+
+## [04 Data Cleaning](04-Data-Cleaning/Session4%20Data%20Cleaning.html)
+- [1. Titanic Case Setup](04-Data-Cleaning/Session4%20Data%20Cleaning.html#setup-and-load-the-titanic-dataset)
+  - Initial load & overview
+- [2. Inspecting Data Quality](04-Data-Cleaning/Session4%20Data%20Cleaning.html#inspect-data-quality)
+  - Missingness profiles & data types
+- [3. Missing Value Handling](04-Data-Cleaning/Session4%20Data%20Cleaning.html#handle-missing-values)
+  - Drop vs forward-fill vs median imputation
+- [4. Deduplication & Renaming](04-Data-Cleaning/Session4%20Data%20Cleaning.html#assess-duplicates-drop-columns-and-rename-columns)
+  - Removing duplicate keys & column consistency
+- [5. Boolean Mask Filtering](04-Data-Cleaning/Session4%20Data%20Cleaning.html#filter-data-with-comparison-operations)
+  - Compound conditional row selection
+
+## [05 Data Transformation](05-Data-Transformation/Session5%20Data%20Transformation.html)
+- [1. String Operations](05-Data-Transformation/Session5%20Data%20Transformation.html#string-operations)
+  - Case normalisation, stripping & splitting
+- [2. Datetime Manipulation](05-Data-Transformation/Session5%20Data%20Transformation.html#datetime-operations)
+  - `pd.to_datetime()`, date parts & intervals
+- [3. Applying Custom Functions](05-Data-Transformation/Session5%20Data%20Transformation.html#defining-functions)
+  - `.apply()`, `.map()`, and lambda routines
+- [4. Type Conversion & Scaling](05-Data-Transformation/Session5%20Data%20Transformation.html#encoding-and-scaling)
+  - One-hot & label encoding
+  - Min-max & standardisation scaling
+
+## [06 Data Restructuring](06-Data-Restructuring/Session6%20Data%20Restructuring.html)
+- [1. Merging & Concatenating](06-Data-Restructuring/Session6%20Data%20Restructuring.html#merging-and-concatenating-datasets)
+  - Inner, Left, Right & Outer joins
+  - Appending rows with `pd.concat()`
+- [2. Split-Apply-Combine](06-Data-Restructuring/Session6%20Data%20Restructuring.html#grouping-aggregation-and-multiindex)
+  - `.groupby()` and multi-column aggregation
+  - Managing hierarchical MultiIndex
+- [3. Wide vs Long Reshaping](06-Data-Restructuring/Session6%20Data%20Restructuring.html#reshaping-with-pivot-pivottable-and-melt)
+  - `melt()` wide tables into long records
+  - `pivot()` and `pivot_table()` summaries
+  - `stack()` and `unstack()` index movements
+
+## [07 Data Visualisation](07-Data-Visualisation/Session7%20Data%20Visualisation.html)
+- [1. Visualisation Methods](07-Data-Visualisation/Session7%20Data%20Visualisation.html#visualisation-methods-in-python)
+  - Pandas plotting vs Matplotlib vs Seaborn
+- [2. Exploratory Data Analysis](07-Data-Visualisation/Session7%20Data%20Visualisation.html#exploratory-data-analysis)
+  - Formulating visual inquiries
+- [3. Comparison Visualisations](07-Data-Visualisation/Session7%20Data%20Visualisation.html#charts-for-comparison)
+  - Bar plots, count plots, error bars
+- [4. Distribution Visualisations](07-Data-Visualisation/Session7%20Data%20Visualisation.html#charts-for-distribution)
+  - Histograms, KDE & box-and-whisker plots
+- [5. Relationship Visualisations](07-Data-Visualisation/Session7%20Data%20Visualisation.html#charts-for-relationships)
+  - Scatter plots, regression lines & heatmaps
+
+## [08 Reporting with Jupyter Notebook](08-Reporting-with-Jupyter-Notebook/Session8%20Reporting%20with%20Jupyter%20Notebook.html)
+- [1. Reporting Framework](08-Reporting-with-Jupyter-Notebook/Session8%20Reporting%20with%20Jupyter%20Notebook.html#reporting-in-a-notebook)
+  - Integrating prose, formulas & visual evidence
+- [2. Report Architecture](08-Reporting-with-Jupyter-Notebook/Session8%20Reporting%20with%20Jupyter%20Notebook.html#what-a-good-data-analysis-report-requires)
+  - Nine-part professional report template
+- [3. Section Authoring](08-Reporting-with-Jupyter-Notebook/Session8%20Reporting%20with%20Jupyter%20Notebook.html#writing-each-report-section)
+  - Executive summary, methodology & conclusions
+- [4. Document Export](08-Reporting-with-Jupyter-Notebook/Session8%20Reporting%20with%20Jupyter%20Notebook.html#exporting-reports-to-pdf)
+  - Rendering to PDF & clean HTML
+
+## [11 Statistical Analysis](11-Statistical-Analysis/Session11%20Statistical%20Analysis.html)
+- [1. Significance Testing Logic](11-Statistical-Analysis/Session11%20Statistical%20Analysis.html#introduction-to-significance-testing)
+  - Null hypothesis ($H_0$) & alternative hypothesis ($H_1$)
+- [2. Comparing Two Groups](11-Statistical-Analysis/Session11%20Statistical%20Analysis.html#how-to-compare-two-groups-a-sampling-approach)
+  - Sampling variation & standard error
+- [3. 7-Step Testing Workflow](11-Statistical-Analysis/Session11%20Statistical%20Analysis.html#significance-testing-workflow)
+  - From business question to statistical conclusion
+- [4. Two-Sample t-Test](11-Statistical-Analysis/Session11%20Statistical%20Analysis.html#t-test)
+  - Welch's vs Student's t-test in `scipy.stats`
+- [5. Interpreting p-Values](11-Statistical-Analysis/Session11%20Statistical%20Analysis.html#interpreting-p-value)
+  - Significance threshold $\alpha = 0.05$
+  - Multiple comparisons problem & Bonferroni
+
+## [12 More Statistical Tests](12-More-Statistical-Tests/Session12%20More%20Statistical%20Tests.html)
+- [1. Limitations of Multiple t-Tests](12-More-Statistical-Tests/Session12%20More%20Statistical%20Tests.html#from-t-test-limitations-to-anova)
+  - Family-wise error rate inflation
+- [2. One-Way ANOVA](12-More-Statistical-Tests/Session12%20More%20Statistical%20Tests.html#one-way-anova)
+  - F-statistic, between vs within variance
+  - Tukey's HSD post-hoc pairwise comparisons
+- [3. Chi-Square Test of Independence](12-More-Statistical-Tests/Session12%20More%20Statistical%20Tests.html#chi-square-test-of-independence)
+  - Contingency tables, expected frequencies & degrees of freedom
+- [4. Choosing the Right Test](12-More-Statistical-Tests/Session12%20More%20Statistical%20Tests.html#choosing-the-right-test)
+  - Decision tree based on variable types & groups
+
+## [13 Introduction to Machine Learning](13-Introduction-to-Machine-Learning/Session13%20Introduction%20to%20Machine%20Learning.html)
+- [1. What Is Machine Learning?](13-Introduction-to-Machine-Learning/Session13%20Introduction%20to%20Machine%20Learning.html#what-is-machine-learning)
+  - Learning patterns from historical data
+- [2. ML Paradigms & Task Taxonomy](13-Introduction-to-Machine-Learning/Session13%20Introduction%20to%20Machine%20Learning.html#supervised-vs-unsupervised-learning)
+  - Supervised vs Unsupervised
+  - Regression vs Classification vs Clustering
+- [3. scikit-learn API Workflow](13-Introduction-to-Machine-Learning/Session13%20Introduction%20to%20Machine%20Learning.html#ml-workflow-with-scikit-learn)
+  - Estimators, `.fit()`, `.predict()`, `.transform()`
+- [4. Case Studies](13-Introduction-to-Machine-Learning/Session13%20Introduction%20to%20Machine%20Learning.html#case-study-california-housing-regression)
+  - California housing regression with metrics
+  - MNIST digit classification
+
+## [14 Unsupervised Learning](14-Unsupervised-Learning/Session14%20Unsupervised%20Learning.html)
+- [1. Unsupervised Foundations](14-Unsupervised-Learning/Session14%20Unsupervised%20Learning.html#supervised-learning-versus-unsupervised-learning)
+  - Feature spaces without ground truth labels
+- [2. Principal Component Analysis](14-Unsupervised-Learning/Session14%20Unsupervised%20Learning.html#principal-component-analysis)
+  - Dimensionality reduction & explained variance ratio
+- [3. K-Means Clustering Workflow](14-Unsupervised-Learning/Session14%20Unsupervised%20Learning.html#k-means-clustering)
+  - Feature standardisation with StandardScaler
+  - Centroid initialisation & cluster assignments
+- [4. Cluster Validation & Evaluation](14-Unsupervised-Learning/Session14%20Unsupervised%20Learning.html#k-means-evaluation)
+  - Inertia & Elbow method
+  - Silhouette score & Calinski-Harabasz metrics
+</script>
+</div>
+
+<script>
+// Open mindmap content links in a new tab; resolve to online GitHub Pages if running from file://
+document.addEventListener('click', function(e) {
+  const link = e.target.closest('a');
+  if (!link || !link.getAttribute('href') || link.classList.contains('nav-btn')) return;
+
+  let href = link.getAttribute('href');
+  
+  if (window.location.protocol === 'file:' && !href.startsWith('http://') && !href.startsWith('https://')) {
+    href = 'https://wlos.github.io/DA_with_Python/' + href.replace(/^\.\//, '');
+    link.setAttribute('href', href);
+  }
+
+  link.setAttribute('target', '_blank');
+  link.setAttribute('rel', 'noopener noreferrer');
+});
+
+// Recursive fold state manager for Markmap
+function setNodeFold(node, fold, depth) {
+  if (depth === undefined) depth = 0;
+  if (depth >= 1) {
+    node.payload = Object.assign({}, node.payload, { fold: fold ? 1 : 0 });
+  } else {
+    node.payload = Object.assign({}, node.payload, { fold: 0 });
+  }
+  if (node.children && node.children.length > 0) {
+    node.children.forEach(function(child) {
+      setNodeFold(child, fold, depth + 1);
+    });
+  }
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+  const btnZoomIn = document.getElementById('btn-zoom-in');
+  const btnZoomOut = document.getElementById('btn-zoom-out');
+  const btnFit = document.getElementById('btn-fit');
+  const btnExpand = document.getElementById('btn-expand');
+  const btnCollapse = document.getElementById('btn-collapse');
+
+  if (btnZoomIn) {
+    btnZoomIn.addEventListener('click', function() {
+      if (markmapInstance) markmapInstance.rescale(1.25);
+    });
+  }
+
+  if (btnZoomOut) {
+    btnZoomOut.addEventListener('click', function() {
+      if (markmapInstance) markmapInstance.rescale(0.8);
+    });
+  }
+
+  if (btnFit) {
+    btnFit.addEventListener('click', function() {
+      if (markmapInstance) markmapInstance.fit();
+    });
+  }
+
+  if (btnExpand) {
+    btnExpand.addEventListener('click', async function() {
+      if (markmapInstance && markmapInstance.state && markmapInstance.state.data) {
+        setNodeFold(markmapInstance.state.data, false, 0);
+        await markmapInstance.renderData();
+        markmapInstance.fit();
+      }
+    });
+  }
+
+  if (btnCollapse) {
+    btnCollapse.addEventListener('click', async function() {
+      if (markmapInstance && markmapInstance.state && markmapInstance.state.data) {
+        setNodeFold(markmapInstance.state.data, true, 0);
+        await markmapInstance.renderData();
+        markmapInstance.fit();
+      }
+    });
+  }
+});
+</script>
+</body>
+</html>

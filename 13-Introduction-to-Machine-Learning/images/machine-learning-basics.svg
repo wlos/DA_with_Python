@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="740" viewBox="0 0 1200 740" role="img" aria-labelledby="title desc">
+<title id="title">How machine learning works</title>
+<desc id="desc">Training data flows into a learning algorithm, producing a trained model. New data enters the model from the left and a prediction leaves on the right.</desc>
+<defs>
+
+<style>text{font-family:Arial,Helvetica,sans-serif}.heading{font-size:25px;font-weight:600;fill:#17243c}.detail{font-size:17px;fill:#61718a}.flow{stroke:#ffffff;stroke-width:2.5;stroke-linejoin:round}.training-flow{fill:#2563eb}.inference-flow{fill:#147d68}</style>
+</defs>
+<rect width="1200" height="740" rx="24" fill="#f8fafc"/>
+<text x="60" y="67" font-size="32" font-weight="700" fill="#17243c">How machine learning works</text>
+<text x="60" y="99" class="detail">Learn from examples. Use the trained model to predict new outcomes.</text>
+<rect x="65" y="164" width="136" height="30" rx="15" fill="#e0edff"/>
+<text x="133" y="184" text-anchor="middle" font-size="13" font-weight="700" letter-spacing="1.5" fill="#2563eb">01  TRAINING</text>
+<text x="65" y="229" class="detail">Examples teach the algorithm</text><text x="65" y="254" class="detail">a useful pattern.</text>
+<rect x="430" y="145" width="340" height="104" rx="18" fill="#fff" stroke="#d6e2ef" stroke-width="1.5"/>
+<rect x="454" y="176" width="42" height="42" rx="10" fill="#e9f1ff"/>
+<g stroke="#3b82f6" stroke-width="1.5" fill="none"><rect x="464" y="186" width="22" height="21" rx="2"/><path d="M464 193 H486 M471 186 V207 M478 186 V207 M464 200 H486"/></g>
+<text x="513" y="191" class="heading">Training data</text><text x="513" y="221" class="detail">Examples to learn from</text>
+<path d="M593 253 V275 H582 L600 298 L618 275 H607 V253 Z" class="flow training-flow"/>
+<rect x="430" y="307" width="340" height="104" rx="18" fill="#fff" stroke="#d6e2ef" stroke-width="1.5"/>
+<rect x="454" y="338" width="42" height="42" rx="10" fill="#e9f1ff"/>
+<g stroke="#3b82f6" stroke-width="1.7" fill="#e9f1ff"><path d="M466 350 L484 359 L466 368 M466 350 V368" fill="none"/><circle cx="466" cy="350" r="3"/><circle cx="484" cy="359" r="3"/><circle cx="466" cy="368" r="3"/></g>
+<text x="513" y="353" class="heading">Learning algorithm</text><text x="513" y="383" class="detail">Finds patterns in the data</text>
+<path d="M592 416 V469 H578 L600 500 L622 469 H608 V416 Z" class="flow training-flow"/><text x="621" y="458" font-size="15" fill="#61718a">produces</text>
+<path d="M65 458 H390" stroke="#dce5ef" stroke-width="1.5"/>
+<rect x="65" y="416" width="145" height="30" rx="15" fill="#e5f4f0"/>
+<text x="137" y="436" text-anchor="middle" font-size="13" font-weight="700" letter-spacing="1.5" fill="#147d68">02  INFERENCE</text>
+<rect x="65" y="510" width="275" height="110" rx="18" fill="#fff" stroke="#d6e2ef" stroke-width="1.5"/>
+<text x="202" y="555" text-anchor="middle" class="heading">New data</text><text x="202" y="585" text-anchor="middle" class="detail">Inputs not used in training</text>
+<path d="M345 557 H395 V545 L423 565 L395 585 V573 H345 Z" class="flow inference-flow"/>
+<rect x="430" y="510" width="340" height="110" rx="18" fill="#2563eb"/>
+<text x="600" y="555" text-anchor="middle" font-size="27" font-weight="600" fill="#fff">Trained model</text><text x="600" y="586" text-anchor="middle" font-size="17" fill="#e3edff">The learned prediction function</text>
+<path d="M775 557 H825 V545 L853 565 L825 585 V573 H775 Z" class="flow inference-flow"/>
+<rect x="860" y="510" width="275" height="110" rx="18" fill="#fff" stroke="#b8ded4" stroke-width="1.5"/>
+<text x="997" y="555" text-anchor="middle" class="heading">Prediction</text><text x="997" y="585" text-anchor="middle" class="detail">A value or a class</text>
+<text x="600" y="685" text-anchor="middle" font-size="17" fill="#61718a">Train the model first, then reuse it with new inputs.</text>
+</svg>

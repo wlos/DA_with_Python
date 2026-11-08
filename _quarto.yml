@@ -1,0 +1,132 @@
+project:
+  type: website
+  output-dir: _site
+  resources:
+    - mindmap.html
+    - images/data-analysis-python-banner.png
+    - images/data-analysis-python-roadmap.png
+    - 02-Data-Loading-and-Pandas-Basics/sample_data/marketing_spend_wide.csv
+    - 02-Data-Loading-and-Pandas-Basics/sample_data/product_lookup.csv
+    - 02-Data-Loading-and-Pandas-Basics/sample_data/state_targets.csv
+    - 02-Data-Loading-and-Pandas-Basics/sample_data/state_targets.xlsx
+    - 02-Data-Loading-and-Pandas-Basics/sample_data/retail_sales.csv
+    - 03-Structured-and-Unstructured-Data/sample_data/anscombe.json
+    - 03-Structured-and-Unstructured-Data/sample_data/app_events.log
+    - 03-Structured-and-Unstructured-Data/sample_data/training.db
+    - 06-Data-Restructuring/sample_data/marketing_spend_wide.csv
+    - 06-Data-Restructuring/sample_data/product_lookup.csv
+    - 06-Data-Restructuring/sample_data/state_targets.csv
+    - 08-Reporting-with-Jupyter-Notebook/sample_data/marketing_spend_wide.csv
+    - 08-Reporting-with-Jupyter-Notebook/sample_data/product_lookup.csv
+    - 08-Reporting-with-Jupyter-Notebook/sample_data/state_targets.csv
+    - 13-Introduction-to-Machine-Learning/sample_data/california_housing.csv
+    - 13-Introduction-to-Machine-Learning/sample_data/celsius_fahrenheit_noisy.csv
+    - 13-Introduction-to-Machine-Learning/sample_data/mnist_train_small.csv
+    - 14-Unsupervised-Learning/sample_data/Mall_Customers.csv
+  render:
+    - index.qmd
+    - "01-Introduction-to-Data-Analysis/Session1 Introduction to Data Analysis with Python.ipynb"
+    - "02-Data-Loading-and-Pandas-Basics/Session2 Data Loading and Pandas Basics.ipynb"
+    - "03-Structured-and-Unstructured-Data/Session3 Loading Structured and Unstructured Data.ipynb"
+    - "04-Data-Cleaning/Session4 Data Cleaning.ipynb"
+    - "05-Data-Transformation/Session5 Data Transformation.ipynb"
+    - "06-Data-Restructuring/Session6 Data Restructuring.ipynb"
+    - "07-Data-Visualisation/Session7 Data Visualisation.ipynb"
+    - "08-Reporting-with-Jupyter-Notebook/Session8 Reporting with Jupyter Notebook.ipynb"
+    - "11-Statistical-Analysis/Session11 Statistical Analysis.ipynb"
+    - "12-More-Statistical-Tests/Session12 More Statistical Tests.ipynb"
+    - "13-Introduction-to-Machine-Learning/Session13 Introduction to Machine Learning.ipynb"
+    - "14-Unsupervised-Learning/Session14 Unsupervised Learning.ipynb"
+
+website:
+  title: "Data Analysis with Python"
+  site-url: "https://wlos.github.io/DA_with_Python/"
+  repo-url: "https://github.com/wlos/DA_with_Python"
+  repo-actions:
+    - source
+  navbar:
+    background: primary
+    left:
+      - text: "Home"
+        href: index.qmd
+      - text: "Mindmap"
+        href: mindmap.html
+      - text: "Session 1"
+        href: "01-Introduction-to-Data-Analysis/Session1 Introduction to Data Analysis with Python.ipynb"
+      - text: "Session 2"
+        href: "02-Data-Loading-and-Pandas-Basics/Session2 Data Loading and Pandas Basics.ipynb"
+      - text: "Session 3"
+        href: "03-Structured-and-Unstructured-Data/Session3 Loading Structured and Unstructured Data.ipynb"
+      - text: "Session 4"
+        href: "04-Data-Cleaning/Session4 Data Cleaning.ipynb"
+      - text: "Session 5"
+        href: "05-Data-Transformation/Session5 Data Transformation.ipynb"
+      - text: "Session 6"
+        href: "06-Data-Restructuring/Session6 Data Restructuring.ipynb"
+      - text: "Session 7"
+        href: "07-Data-Visualisation/Session7 Data Visualisation.ipynb"
+      - text: "Session 8"
+        href: "08-Reporting-with-Jupyter-Notebook/Session8 Reporting with Jupyter Notebook.ipynb"
+      - text: "Session 11"
+        href: "11-Statistical-Analysis/Session11 Statistical Analysis.ipynb"
+      - text: "Session 12"
+        href: "12-More-Statistical-Tests/Session12 More Statistical Tests.ipynb"
+      - text: "Session 13"
+        href: "13-Introduction-to-Machine-Learning/Session13 Introduction to Machine Learning.ipynb"
+      - text: "Session 14"
+        href: "14-Unsupervised-Learning/Session14 Unsupervised Learning.ipynb"
+  sidebar:
+    style: floating
+    search: true
+    contents:
+      - text: "Home"
+        href: index.qmd
+      - text: "Course Mindmap"
+        href: mindmap.html
+      - section: "Course Sessions"
+        contents:
+          - text: "Session 1: Introduction to Data Analysis"
+            href: "01-Introduction-to-Data-Analysis/Session1 Introduction to Data Analysis with Python.ipynb"
+          - text: "Session 2: Data Loading and Pandas Basics"
+            href: "02-Data-Loading-and-Pandas-Basics/Session2 Data Loading and Pandas Basics.ipynb"
+          - text: "Session 3: Structured and Unstructured Data"
+            href: "03-Structured-and-Unstructured-Data/Session3 Loading Structured and Unstructured Data.ipynb"
+          - text: "Session 4: Data Cleaning"
+            href: "04-Data-Cleaning/Session4 Data Cleaning.ipynb"
+          - text: "Session 5: Data Transformation"
+            href: "05-Data-Transformation/Session5 Data Transformation.ipynb"
+          - text: "Session 6: Data Restructuring"
+            href: "06-Data-Restructuring/Session6 Data Restructuring.ipynb"
+          - text: "Session 7: Data Visualisation"
+            href: "07-Data-Visualisation/Session7 Data Visualisation.ipynb"
+          - text: "Session 8: Reporting with Jupyter Notebook"
+            href: "08-Reporting-with-Jupyter-Notebook/Session8 Reporting with Jupyter Notebook.ipynb"
+          - text: "Session 11: Statistical Analysis"
+            href: "11-Statistical-Analysis/Session11 Statistical Analysis.ipynb"
+          - text: "Session 12: More Statistical Tests"
+            href: "12-More-Statistical-Tests/Session12 More Statistical Tests.ipynb"
+          - text: "Session 13: Introduction to Machine Learning"
+            href: "13-Introduction-to-Machine-Learning/Session13 Introduction to Machine Learning.ipynb"
+          - text: "Session 14: Unsupervised Learning"
+            href: "14-Unsupervised-Learning/Session14 Unsupervised Learning.ipynb"
+  page-footer:
+    left: "Data Analysis with Python (ICTDBS556) course materials"
+    right:
+      - icon: github
+        href: "https://github.com/wlos/DA_with_Python"
+
+format:
+  html:
+    theme: cosmo
+    css: styles.css
+    toc: true
+    toc-location: right
+    toc-title: "On this page"
+    toc-depth: 3
+    toc-expand: true
+    code-copy: true
+    code-overflow: scroll
+    smooth-scroll: true
+
+execute:
+  enabled: false

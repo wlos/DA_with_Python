@@ -1,0 +1,11 @@
+.DS_Store
+**/.DS_Store
+_site/
+.quarto/
+.jupyter_cache/
+__pycache__/
+.venv/
+archive/
+AGENTS.md
+.codex/
+**/*.quarto_ipynb
